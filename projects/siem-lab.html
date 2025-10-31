@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto: Laboratorio SIEM con Splunk y Kali</title>
+    <!-- Opcional: Puedes vincular tu CSS principal aquí si quieres que las páginas de proyectos tengan el mismo estilo -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Estilos específicos para esta página si no usas el CSS principal */
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background-color: var(--background-dark); /* Usando variables del CSS principal */
+            color: var(--text-light);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: var(--background-medium);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        h1, h2, h3 {
+            font-family: 'Righteous', cursive;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+        }
+        h2 {
+            font-size: 2em;
+            margin-top: 30px;
+        }
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .image-gallery img {
+            max-width: 100%; /* Asegura que la imagen no exceda el contenedor */
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+        .image-gallery img:hover {
+            transform: scale(1.03);
+        }
+        .back-link {
+            display: block;
+            margin-top: 40px;
+            text-align: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+        .back-link:hover {
+            color: var(--primary-color-dark);
+            text-decoration: underline;
+        }
+        /* Media Queries para responsividad */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            .image-gallery img {
+                width: 100%; /* Imágenes ocupan todo el ancho en móvil */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Laboratorio SIEM con Splunk y Kali</h1>
+        <p>Fecha de Realización: Agosto 2025</p>
+        <hr style="border-color: var(--border-color); margin: 20px 0;">
+
+        <h2>Introduction</h2>
+        <p>This project outlines the systematic process of setting up a functional Security Information and Event Management (SIEM) laboratory. The primary objective was to establish a controlled environment for practicing cybersecurity skills, specifically log collection, monitoring, and analysis using Splunk Enterprise and Kali Linux. This hands-on experience is crucial for understanding the foundational elements of a SOC analyst role.</p>
+
+        <h2>Challenge 1: Connectivity and Initial Configuration</h2>
+        <p>The initial phase presented challenges in ensuring seamless network connectivity and correct configuration for log forwarding. Logs from the Kali endpoint were not appearing in Splunk as expected. Through systematic troubleshooting, I first verified basic network communication between the Kali Linux VM (192.168.56.10) and the Ubuntu Server VM (192.168.56.100), confirming that network rules and firewall settings on Ubuntu (UFW allowing port 9997) were correctly configured. The issue was initially traced to discrepancies in hostname recognition within Splunk and then to ensuring the Splunk Universal Forwarder's `outputs.conf` was properly directing data. This phase underscored the importance of meticulous network setup and configuration file validation in a SIEM environment.</p>
+        <div class="image-gallery">
+            <!-- Capturas de pantalla para Conectividad y Configuración Inicial - Imágenes que ya tienes -->
+            <img src="../Image/Imagenes Proyectos/Fase 0/Configuración y Operación de Laboratorio SIEM/IP.png" alt="Configuración de IP en Ubuntu Server (ip a show)">
+            <img src="../Image/Imagenes Proyectos/Fase 0/Configuración y Operación de Laboratorio SIEM/IP Kali.png" alt="Configuración de IP en Kali Linux (ip a show)">
+            <img src="../Image/Imagenes Proyectos/Fase 0/Configuración y Operación de Laboratorio SIEM/Firewall.png" alt="Estado del Firewall UFW en Ubuntu Server">
+            <img src="../Image/Imagenes Proyectos/Fase 0/Configuración y Operación de Laboratorio SIEM/Splunk Indexer.png" alt="Splunk Indexer escuchando en puerto 9997 (ss -tuln)">
+            <img src="../Image/Imagenes Proyectos/Fase 0/Configuración y Operación de Laboratorio SIEM/Splunk Forwarder.png" alt="Estado del Splunk Universal Forwarder en Kali (splunk status)">
+            <img src="../Image/Imagenes Proyectos/Fase 0/Configuración y Operación de Laboratorio SIEM/Kali a Ubuntu.png" alt="Test de conectividad de Kali a Ubuntu puerto 9997 (nc -zv)">
+            <img src="../Image/Imagenes Proyectos/Fase 0/Configuración y Operación de Laboratorio SIEM/Logs Splunk.png" alt="Vista inicial de Logs de Kali en Splunk (index=main sourcetype=syslog)">
+        </div>
+
+        <h2>Challenge 2: Authentication Log Ingestion and Journald Issues</h2>
+        <p>A significant hurdle arose when specific authentication logs, crucial for security monitoring, were not being ingested into Splunk. Kali Linux, by default, manages logs via `systemd-journald`, rather than the traditional `rsyslog`. Despite configuring the Universal Forwarder with `[journald]` inputs in `inputs.conf` and ensuring the `splunkfwd` user was part of necessary groups (`systemd-journal`, `adm`), a `splunk btool` inspection revealed that these `journald` configurations were not being loaded by the forwarder. The definitive solution involved installing and enabling `rsyslog` on Kali. This allowed authentication events to be written to standard files like `/var/log/auth.log`, which the Universal Forwarder could reliably monitor. This process highlighted the complexities of log management in different Linux distributions and the need for adaptable collection strategies.</p>
+        <div class="image-gallery">
+            <!-- Capturas de pantalla para Authentication Log Ingestion y Journald Issues -->
+            <!-- Aquí irían las capturas del problema con journald y la solución -->
+            <img src="https://placehold.co/400x250/34495e/ecf0f1?text=Journalctl+output+(problem)" alt="Salida de journalctl mostrando logs (problema inicial)">
+            <img src="https://placehold.co/400x250/34495e/ecf0f1?text=splunk+btool+inputs+error" alt="Resultado de splunk btool inputs (problema de carga de journald)">
+            <img src="https://placehold.co/400x250/34495e/ecf0f1?text=rsyslog+status+(active)" alt="Estado del servicio rsyslog activo (solución)">
+            <img src="https://placehold.co/400x250/34495e/ecf0f0?text=/var/log/auth.log+sudo+(solución)" alt="Contenido de /var/log/auth.log con sudo y su (solución)">
+            <img src="https://placehold.co/400x250/34495e/ecf0f0?text=inputs.conf+final+content" alt="Contenido final de inputs.conf monitoreando auth.log y syslog (solución)">
+        </div>
+
+        <h2>Challenge 3: Time Synchronization and Outdated Logs</h2>
+        <p>The final and most persistent challenge was the timestamp discrepancy in Splunk, where recent Kali logs appeared with outdated dates (e.g., from the previous day). This was diagnosed as a lack of internet connectivity on the Kali VM, preventing its Network Time Protocol (NTP) service (`systemd-timesyncd`) from synchronizing the system clock. Although a NAT network adapter (`eth2`) was configured in VirtualBox to provide internet access, initial attempts to manually set the default gateway failed. The core problem was Kali not automatically acquiring its network configuration (including the default gateway) via DHCP for the NAT interface. The resolution involved explicitly configuring `eth2` for DHCP in `/etc/network/interfaces` and restarting the network services. Once internet access was established, NTP synchronization occurred, and all subsequent logs were correctly timestamped in Splunk, enabling accurate real-time analysis.</p>
+        <div class="image-gallery">
+            <!-- Capturas de pantalla para Time Synchronization y Outdated Logs -->
+            <!-- Aquí irían las capturas del problema de tiempo y la solución -->
+            <img src="https://placehold.co/400x250/34495e/ecf0f1?text=Ping+to+8.8.8.8+(failed)" alt="Ping a 8.8.8.8 fallido (problema de conexión)">
+            <img src="https://placehold.co/400x250/34495e/ecf0f1?text=timedatectl+status+(not+sync)" alt="Estado de timedatectl (no sincronizado)">
+            <img src="https://placehold.co/400x250/34495e/ecf0f1?text=VirtualBox+NAT+Adapter+Config" alt="Configuración del adaptador NAT en VirtualBox">
+            <img src="https://placehold.co/400x250/34495e/ecf0f1?text=Ping+to+8.8.8.8+(success)" alt="Ping a 8.8.8.8 exitoso (conexión restaurada)">
+            <img src="https://placehold.co/400x250/34495e/ecf0f1?text=timedatectl+status+(synchronized)" alt="Estado de timedatectl (sincronizado)">
+            <img src="../Image/Imagenes Proyectos/Fase 0/Configuración y Operación de Laboratorio SIEM/Logs Splunk.png" alt="Logs de Kali en Splunk con la hora correcta (solución)">
+        </div>
+
+        <h2>Conclusion and Learnings</h2>
+        <p>This comprehensive troubleshooting process was invaluable. It not only solidified my understanding of SIEM architecture and log collection mechanisms but also honed critical problem-solving skills, persistence, and attention to detail. Overcoming network, permission, and time synchronization challenges demonstrates a practical capability essential for an SOC N1 analyst. This hands-on experience forms a robust foundation for future security analysis tasks, proving my ability to set up and maintain critical security infrastructure, diagnose complex issues, and ensure data integrity for real-time threat detection.</p>
+        
+        <a href="../index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Volver al Portafolio Principal</a>
+    </div>
+</body>
+</html>

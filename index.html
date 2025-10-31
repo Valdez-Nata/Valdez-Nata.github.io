@@ -3,70 +3,526 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="estilos.css">
-    <title>Mi Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Portfolio - Natanael Valdez | Analista SOC N1</title>
 </head>
 <body>
-    <header>
-        <nav class="nav-item" id="tabs">
-            <ul>
-                <li class="active" onclick="mostrarContenido('tab1')">Inicio</li>
-                <li onclick="mostrarContenido('tab2')">¿Quien soy?</li>
-                <li onclick="mostrarContenido('tab3')">Portfolio</li>
-                <li onclick="mostrarContenido('tab3')">Contacto</li>
-            </ul>
-        </nav>
-        
-        <div id="content">
-            <div id="tab1" class="tab-content active">
-                Contenido de la Pestaña 1
+    <!-- MENÚ ENCABEZADO -->
+    <div class="contenedor-header">
+        <header>
+            <div class="logo">
+                <a href="#"><span>NATA</span> VALDEZ</a> 
             </div>
-            <div id="tab2" class="tab-content">
-                Contenido de la Pestaña 2
+            <nav id="nav">
+                <ul>
+                    <li><a href="#inicio" onclick="seleccionar()">INICIO</a></li>
+                    <li><a href="#sobremi" onclick="seleccionar()">SOBRE MI</a></li>
+                    <li><a href="#skills" onclick="seleccionar()">SKILLS</a></li>
+                    <li><a href="#experiencia" onclick="seleccionar()">EXPERIENCIA</a></li>
+                    <li><a href="#portfolio" onclick="seleccionar()">PROYECTOS</a></li>
+                    <li><a href="#contacto" onclick="seleccionar()">CONTACTO</a></li>
+                </ul>
+            </nav>
+            <div class="nav-responsive" onclick="mostrarOcultarMenu()">
+                <i class="fa-solid fa-bars"></i>
             </div>
-            <!-- Aquí puedes agregar más contenidos de pestañas según sea necesario -->
-        </div>
-    </header>
-    <!-- <header>
-        <h1 class="logo">NV</h1>
-        <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">¿Quien soy?</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Portfolio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contacto</a>
-            </li>
-          </ul>
-    </header>
-    <section class="perfil">
-        <div class="imagen" id="image">
-        <img class="img" src="./Image/WhatsApp Image 2023-11-30 at 16.30.42.jpeg" alt="Imagen de presentacion">
-        </div>
-        <div class="proyectos" id="projects">
-            <h2>Proyectos</h2>
+        </header>
+    </div>
+
+    <!-- SECCIÓN INICIO -->
+    <section id="inicio" class="inicio">
+        <div class="contenido-banner">
+            <div class="contenedor-img">
+                <img src="Image/Luffy_cara_Skypiea.png" alt="Foto de Perfil de Natanael Valdez" onerror="this.onerror=null;this.src='https://placehold.co/220x220/222831/EEEEEE?text=Nata+Valdez';">
+            </div>
+            <h1>Natanael Valdez</h1>
+            <h2>Analista SOC N1 | Especialista en Ciberseguridad</h2>
+            <div class="redes">
+                <a href="https://www.facebook.com/nata.vz.7/?locale=es_LA" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.linkedin.com/in/natanael-valdez-426488237" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/nataa.valdezz.ok" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://github.com/Valdez-Nata" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
         </div>
     </section>
-    <section class= "yo" id="about">
-        <h2>Acerca de mí</h2>
-        <p>Breve descripción sobre ti y tus habilidades.</p>
+
+    <!-- SECCIÓN SOBRE MI -->
+    <section id="sobremi" class="sobremi">
+        <div class="contenido-seccion">
+            <h2>Sobre Mí</h2>
+            <p><span>Hola, soy Natanael Valdez.</span> Soy un Analista SOC N1 en formación**, apasionado por la ciberseguridad y la protección de infraestructuras digitales. Mi trayectoria en el análisis de sistemas me ha proporcionado una sólida base lógica y de resolución de problemas, la cual he redirigido y especializado hacia el monitoreo, la detección y la respuesta a incidentes de seguridad. Cuento con experiencia práctica en la configuración de entornos SIEM, el análisis de logs en tiempo real y la identificación de patrones de actividad maliciosa. Estoy comprometido con el aprendizaje continuo y la aplicación de mis habilidades para fortalecer la postura de seguridad de cualquier organización.</p>
+            
+            <div class="fila">
+                <!-- DATOS PERSONALES -->
+                <div class="col">
+                    <h3>Datos personales</h3>
+                    <ul>
+                        <li>
+                            <strong>Cumpleaños</strong>
+                            20-03-2003
+                        </li>
+                        <li>
+                            <strong>Teléfono</strong>
+                            +54 9 11 6534-0506
+                        </li>
+                        <li>
+                            <strong>Email</strong>
+                            valdeznata52@gmail.com
+                        </li>
+                        <li>
+                            <strong>Dirección</strong>
+                            Av. Castañares 6630, CABA, Argentina
+                        </li>
+                    </ul>
+                </div>
+                <!-- INTERESES -->
+                <div class="col">
+                    <h3>Intereses</h3>
+                    <div class="contenedor-intereses">
+                        <div class="interes">
+                            <i class="fa-solid fa-flask-vial"></i> <!-- Ícono de laboratorio/investigación -->
+                            <span>LABORATORIOS</span>
+                        </div>
+                        <div class="interes">
+                            <i class="fa-solid fa-network-wired"></i> <!-- Ícono de redes -->
+                            <span>REDES</span>
+                        </div>
+                        <div class="interes">
+                            <i class="fa-brands fa-linux"></i>
+                            <span>LINUX</span>
+                        </div>
+                        <div class="interes">
+                            <i class="fa-solid fa-shield-alt"></i>
+                            <span>SEGURIDAD</span>
+                        </div>
+                        <div class="interes">
+                            <i class="fa-solid fa-magnifying-glass-chart"></i> <!-- Ícono de análisis/dashboard -->
+                            <span>ANÁLISIS DE LOGS</span>
+                        </div>
+                        <div class="interes">
+                            <i class="fa-solid fa-bug"></i> <!-- Ícono de bug/vulnerabilidad -->
+                            <span>PEN TESTING</span>
+                        </div>
+                        <div class="interes">
+                            <i class="fa-solid fa-book-open"></i>
+                            <span>APRENDIZAJE</span>
+                        </div>
+                        <div class="interes">
+                            <i class="fa-solid fa-terminal"></i>
+                            <span>SCRIPTING</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button onclick="window.open('docs/CV-Natanael_Valdez.pdf', '_blank')">
+                Descargar CV <i class="fa-solid fa-download"></i>
+                <span class="overlay"></span>
+            </button>
+        </div>
     </section>
 
-    <section class="contacto" id="contact">
-        <h2>Contacto</h2>
-        <p>Información de contacto y formulario de contacto.</p>
-    </section> -->
+    <!-- SECCIÓN SKILLS -->
+    <section class="skills" id="skills">
+        <div class="contenido-seccion">
+            <h2>Skills</h2>
+            <div class="fila">
+                <!-- Technical Skill -->
+                <div class="col">
+                    <h3>Technical Skills</h3>
+                    <div class="skill">
+                        <span>Splunk (SIEM)</span>
+                        <div class="barra-skill">
+                            <div class="progreso splunk">
+                                <span>80%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Análisis de Logs</span>
+                        <div class="barra-skill">
+                            <div class="progreso loganalysis">
+                                <span>75%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Linux (Kali, Ubuntu)</span>
+                        <div class="barra-skill">
+                            <div class="progreso linux">
+                                <span>70%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Redes (TCP/IP)</span>
+                        <div class="barra-skill">
+                            <div class="progreso networking">
+                                <span>65%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Python (Scripting)</span>
+                        <div class="barra-skill">
+                            <div class="progreso python">
+                                <span>60%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Detección de Amenazas</span>
+                        <div class="barra-skill">
+                            <div class="progreso threaddetection">
+                                <span>70%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Git / GitHub</span>
+                        <div class="barra-skill">
+                            <div class="progreso git">
+                                <span>75%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Professional Skill -->
+                <div class="col">
+                    <h3>Professional Skills</h3>
+                    <div class="skill">
+                        <span>Resolución de Problemas</span>
+                        <div class="barra-skill">
+                            <div class="progreso resolucion">
+                                <span>85%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Pensamiento Crítico</span>
+                        <div class="barra-skill">
+                            <div class="progreso criticthought">
+                                <span>88%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Atención al Detalle</span>
+                        <div class="barra-skill">
+                            <div class="progreso detailoriented">
+                                <span>90%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Aprendizaje Continuo</span>
+                        <div class="barra-skill">
+                            <div class="progreso continuouslearning">
+                                <span>95%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Comunicación Efectiva</span>
+                        <div class="barra-skill">
+                            <div class="progreso comunicacion">
+                                <span>80%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Trabajo en Equipo</span>
+                        <div class="barra-skill">
+                            <div class="progreso trabajo">
+                                <span>75%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Proactividad</span>
+                        <div class="barra-skill">
+                            <div class="progreso proactivity">
+                                <span>85%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <footer >
-        <p>&copy; 2023 Mi Portfolio</p>
+        <!-- SECCIÓN EXPERIENCIA (Antiguo Curriculum) -->
+    <section id="experiencia" class="curriculum">
+        <div class="contenido-seccion">
+            <h2>Experiencia</h2>
+            <div class="fila">
+                <div class="col izquierda">
+                    <h3>Educación y Certificaciones</h3>
+                    
+                    <!-- Analista de Sistemas (IFTS N°5) -->
+                    <div class="item izq">
+                        <h4>Analista de Sistemas</h4>
+                        <span class="casa">IFTS N°5</span>
+                        <span class="fecha">2022-2024</span>
+                        <p>Formación sólida en análisis, diseño e implementación de sistemas informáticos. Adquirí una base fundamental en lógica de programación, bases de datos y metodologías de desarrollo, esencial para la comprensión de sistemas complejos y la detección de vulnerabilidades.</p>
+                        <div class="conectori">
+                            <div class="circuloi"></div>
+                        </div>
+                    </div>
+
+                    <!-- Certificado Profesional de Ciberseguridad de Google (Coursera) - Agrupado -->
+                    <div class="item izq">
+                        <h4>Certificado Profesional de Ciberseguridad</h4>
+                        <span class="casa">Google / Coursera</span>
+                        <span class="fecha">Jun 30, 2025</span>
+                        <p>Certificación integral que valida la competencia en Python, Linux, SQL, herramientas SIEM e IDS, identificación y mitigación de riesgos y amenazas de ciberseguridad para roles de nivel de entrada. Incluye los siguientes cursos:</p>
+                        <ul>
+                            <li>Foundations of Cybersecurity</li>
+                            <li>Play It Safe: Manage Security Risks</li>
+                            <li>Connect and Protect: Networks and Network Security</li>
+                            <li>Tools of the Trade: Linux and SQL</li>
+                            <li>Assets, Threats, and Vulnerabilities</li>
+                            <li>Sound the Alarm: Detection and Response</li>
+                            <li>Automate Cybersecurity Tasks with Python</li>
+                            <li>Put It to Work: Prepare for Cybersecurity Jobs</li>
+                            <li>Accelerate Your Job Search with AI</li>
+                        </ul>
+                        <div class="conectori">
+                            <div class="circuloi"></div>
+                        </div>
+                    </div>
+
+                    <!-- Progreso en TryHackMe: SOC Level 1 - Marcos de Defensa Cibernética -->
+                    <div class="item izq">
+                        <h4>SOC Level 1 - Marcos de Defensa Cibernética</h4>
+                        <span class="casa">TryHackMe</span>
+                        <span class="fecha">Agosto 2025</span>
+                        <p>Completado el módulo inicial del pathway SOC Level 1, adquiriendo conocimientos fundamentales sobre marcos y políticas que establecen una buena postura de seguridad. Se exploraron conceptos como la Pirámide del Dolor, la Cadena de Muerte Cibernética y el Modelo de Diamante para el análisis de intrusiones, esenciales para estrategias defensivas.</p>
+                        <div class="conectori">
+                            <div class="circuloi"></div>
+                        </div>
+                    </div>
+
+                    <!-- Fundamentos de Redes y Seguridad (Cisco) -->
+                    <div class="item izq">
+                        <h4>Fundamentos de Redes y Seguridad</h4>
+                        <span class="casa">Cisco Networking Academy (CCNA - Módulos iniciales)</span>
+                        <span class="fecha">2023</span>
+                        <p>Estudio de los principios de redes, topologías, protocolos (TCP/IP), y fundamentos de seguridad de red, esenciales para entender el tráfico y los ataques.</p>
+                        <div class="conectori">
+                            <div class="circuloi"></div>
+                        </div>
+                    </div>
+
+                    <!-- Inteligencia Artificial y Productividad -->
+                    <div class="item izq">
+                        <h4>Inteligencia Artificial y Productividad</h4>
+                        <span class="casa">Google / Santander | Open Academy</span>
+                        <span class="fecha">Ago 06, 2024</span>
+                        <p>Exploración de fundamentos de Inteligencia Artificial y su aplicación práctica para optimizar flujos de trabajo y eficiencia.</p>
+                        <div class="conectori">
+                            <div class="circuloi"></div>
+                        </div>
+                    </div>
+
+                    <!-- Introducción a IoT -->
+                    <div class="item izq">
+                        <h4>Introducción a IoT</h4>
+                        <span class="casa">Cisco Networking Academy</span>
+                        <span class="fecha">Jun 28, 2024</span>
+                        <p>Conocimientos sobre cómo IoT y la transformación digital impactan negocios y gobiernos, con énfasis en la seguridad mejorada en el mundo digital.</p>
+                        <div class="conectori">
+                            <div class="circuloi"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Introducción a la Programación Web -->
+                    <div class="item izq">
+                        <h4>Introducción a la Programación Web</h4>
+                        <span class="casa">UTN.BA Extensión Universitaria</span>
+                        <span class="fecha">Dic 01, 2023</span>
+                        <p>Capacitación en los fundamentos de la programación web (HTML, CSS, JavaScript), desarrollando una base sólida en lógica y estructura de aplicaciones web.</p>
+                        <div class="conectori">
+                            <div class="circuloi"></div>
+                        </div>
+                    </div>
+
+                    <!-- Nivel 1 de Inglés (A1.1 MCER) -->
+                    <div class="item izq">
+                        <h4>Nivel 1 de Inglés (A1.1 MCER)</h4>
+                        <span class="casa">CUI-UBA</span>
+                        <span class="fecha">Jun 10, 2024</span>
+                        <p>Dominio de las bases del idioma inglés para la comunicación elemental, esencial para interactuar en entornos tecnológicos globales.</p>
+                        <div class="conectori">
+                            <div class="circuloi"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col derecha">
+                    <h3>Experiencia Práctica y Proyectos Clave</h3>
+                    <div class="item der">
+                        <h4>Laboratorio SIEM (Splunk & Kali Linux)</h4>
+                        <span class="casa">Proyecto Personal de Ciberseguridad</span>
+                        <span class="fecha">Agosto 2025</span>
+                        <p>Diseño e implementación de un entorno de laboratorio SIEM. Se configuró Splunk para la recolección de logs de un endpoint Kali Linux, superando desafíos de red, permisos y sincronización de tiempo. Este laboratorio es la base para el monitoreo y análisis de seguridad.</p>
+                        <div class="conectord">
+                        <div class="circulod"></div>
+                        </div>
+                    </div>
+                    <div class="item der">
+                        <h4>Análisis y Detección de Fallos de Autenticación</h4>
+                        <span class="casa">Proyecto de Laboratorio SIEM</span>
+                        <span class="fecha">Agosto 2025</span>
+                        <p>Implementación de técnicas para generar y monitorear fallos de autenticación (fuerza bruta simulada) en Kali, utilizando Splunk para identificar patrones de intentos de acceso no autorizado, usuarios inexistentes y uso indebido de `sudo`/`su`.</p>
+                        <div class="conectord">
+                        <div class="circulod"></div>
+                        </div>
+                    </div>
+                    <div class="item der">
+                        <h4>Monitoreo Básico de Procesos y Comandos</h4>
+                        <span class="casa">Proyecto de Laboratorio SIEM</span>
+                        <span class="fecha">Agosto 2025</span>
+                        <p>Monitoreo de la actividad de comandos y procesos en un endpoint Linux. Se analizó el registro de acciones de privilegio (`sudo`), intentos fallidos y otros eventos relevantes para detectar actividades sospechosas y patrones de comportamiento anómalos.</p>
+                        <div class="conectord">
+                        <div class="circulod"></div>
+                        </div>
+                    </div>
+                    <div class="item der">
+                        <h4>Experiencia en Desarrollo Frontend (Base Lógica)</h4>
+                        <span class="casa">[Nombre de la Empresa o Proyecto]</span>
+                        <span class="fecha">[Fecha Inicio]-[Fecha Fin]</span>
+                        <p>Aunque mi enfoque actual es la ciberseguridad, mi experiencia previa en desarrollo frontend con HTML, CSS y JavaScript me proporcionó una valiosa comprensión de la lógica de programación, el funcionamiento de las aplicaciones web y la importancia de un código bien estructurado, habilidades transferibles al análisis de seguridad.</p>
+                        <div class="conectord">
+                        <div class="circulod"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- SECCIÓN PROYECTOS (Actualizada para reflejar la nueva organización) -->
+    <section id="portfolio" class="portfolio">
+        <div class="contenido-seccion">
+            <h2>PROYECTOS</h2>
+            <div class="galeria">
+                <!-- PROYECTO 1: Fase 0 - Configuración Base del Laboratorio SIEM -->
+                <div class="proyecto">
+                    <img src="Image/siem_lab_placeholder.jpg" alt="Captura de pantalla de Laboratorio SIEM" onerror="this.onerror=null;this.src='https://placehold.co/340x250/222831/EEEEEE?text=Lab+SIEM+Base';">
+                    <div class="overlay">
+                        <h3>Fase 0: Configuración Base de Laboratorio SIEM</h3>
+                        <p>Setup y Troubleshooting de Entorno Splunk y Kali</p>
+                        <a href="projects/siem-lab.html" class="project-link">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <!-- PROYECTO 2: Fase 1 - Análisis Fundamental de SIEM -->
+                <div class="proyecto">
+                    <img src="Image/security_analysis_overview.jpg" alt="Visión general del análisis de seguridad" onerror="this.onerror=null;this.src='https://placehold.co/340x250/222831/EEEEEE?text=Fase+1+Análisis+SIEM';">
+                    <div class="overlay">
+                        <h3>Fase 1: Análisis Fundamental de SIEM en Kali</h3>
+                        <p>Exploración, Detección de Autenticación y Monitoreo de Comandos</p>
+                        <a href="projects/fase1-analisis-soc.html" class="project-link">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <!-- PROYECTO AÑADIDO: Detección de Actividad de Escaneo de Red (Fase 2) -->
+                <div class="proyecto">
+                    <img src="Image/network_security_placeholder.jpg" alt="Captura de pantalla de escaneo de puertos Nmap" onerror="this.onerror=null;this.src='https://placehold.co/340x250/222831/EEEEEE?text=Nmap+Scan+Detection';">
+                    <div class="overlay">
+                        <h3>Fase 2: Detección de Escaneo de Red</h3>
+                        <p>Monitoreo y Correlación de Actividad de Reconocimiento (Ping y Nmap)</p>
+                        <a href="projects/red-event-correlation.html" class="project-link">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <!-- OTROS PROYECTOS DE SOC (Ideas) -->
+                <div class="proyecto">
+                    <img src="Image/network_security_placeholder.jpg" alt="Captura de pantalla de Proyecto de Redes" onerror="this.onerror=null;this.src='https://placehold.co/340x250/222831/EEEEEE?text=Seguridad+en+Redes';">
+                    <div class="overlay">
+                        <h3>Vulnerabilidades y Pentesting (Básico)</h3>
+                        <p>Identificación de Fallos de Seguridad</p>
+                        <a href="projects/vulnerability-analysis.html" class="project-link">Ver Detalles</a>
+                    </div>
+                </div>
+                <div class="proyecto">
+                    <img src="Image/report_analysis_placeholder.jpg" alt="Captura de pantalla de Análisis de Reportes" onerror="this.onerror=null;this.src='https://placehold.co/340x250/222831/EEEEEE?text=Análisis+de+Reportes';">
+                    <div class="overlay">
+                        <h3>Análisis de Datos de Seguridad y Reportes</h3>
+                        <p>Creación de Dashboards e Informes en Splunk</p>
+                        <a href="projects/security-reports.html" class="project-link">Ver Detalles</a>
+                    </div>
+                </div>
+                
+                <!-- Si quieres mantener la referencia a tu base frontend, esta es una buena forma de hacerlo como proyecto secundario -->
+                <div class="proyecto">
+                    <img src="Image/web_dev_placeholder.jpg" alt="Captura de pantalla de Proyecto Web" onerror="this.onerror=null;this.src='https://placehold.co/340x250/222831/EEEEEE?text=Base+Frontend';">
+                    <div class="overlay">
+                        <h3>Desarrollo Web (Habilidades Lógicas)</h3>
+                        <p>Aplicación de Lógica de Programación y UI/UX</p>
+                        <a href="projects/web-dev-basic.html" class="project-link">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SECCIÓN CONTACTO -->
+    <section id="contacto" class="contacto">
+        <div class="contenido-seccion">
+            <h2>CONTACTO</h2>
+            <div class="fila">
+                <!-- FORMULARIO -->
+                <div class="col">
+                    <input type="text" placeholder="Tu Nombre" id="nombreContacto">
+                    <input type="text" placeholder="Número Telefónico" id="telefonoContacto">
+                    <input type="text" placeholder="Dirección" id="direccionContacto">
+                    <input type="text" placeholder="Tema" id="temaContacto">
+                    <textarea name="" id="mensajeContacto" cols="30" rows="10" placeholder="Mensaje"></textarea>
+                    <button>
+                        Enviar Mensaje<i class="fa-solid fa-paper-plane"></i>
+                        <span class="overlay"></span>
+                    </button>
+                </div>
+                <!-- MAPA -->
+                <div class="col">
+                    <img src="Image/Captura de pantalla 2024-06-12 154850.png" alt="Ubicación en el mapa" onerror="this.onerror=null;this.src='https://placehold.co/500x300/222831/EEEEEE?text=Mapa+Ubicación';">
+                    <div class="info">
+                        <ul>
+                            <li>
+                                <i class="fa-solid fa-location-dot"></i>
+                                Av. Castañares 6630, CABA, Argentina
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-mobile"></i>
+                                Contacto: +54 9 11 6534-0506
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-envelope"></i>
+                                Mail: valdeznata52@gmail.com
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <a href="#inicio" class="arriba">
+            <i class="fa-solid fa-angles-up"></i>
+        </a>
+        <div class="redes">
+            <a href="https://www.facebook.com/nata.vz.7/?locale=es_LA" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.linkedin.com/in/natanael-valdez-426488237" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/nataa.valdezz.ok" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://github.com/Valdez-Nata" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        </div>
     </footer>
 
-    <script src="main.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

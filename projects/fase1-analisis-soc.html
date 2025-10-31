@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto: Fase 1 - Análisis Fundamental de SIEM en Kali Linux</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Estilos específicos para esta página */
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: var(--background-medium);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        h1, h2, h3 {
+            font-family: 'Righteous', cursive;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+        }
+        h2 {
+            font-size: 2em;
+            margin-top: 30px;
+        }
+        h3 {
+            font-size: 1.5em;
+            margin-top: 25px;
+            color: var(--text-light); /* Subtítulos de sección en blanco */
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        ul {
+            margin-bottom: 15px;
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        .image-gallery img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+        .image-gallery img:hover {
+            transform: scale(1.03);
+        }
+        pre {
+            background-color: var(--background-dark);
+            color: var(--primary-color);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+        code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+        hr {
+            border-color: var(--border-color);
+            margin: 40px 0;
+        }
+        .back-link {
+            display: block;
+            margin-top: 40px;
+            text-align: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+        .back-link:hover {
+            color: var(--primary-color-dark);
+            text-decoration: underline;
+        }
+        /* Media Queries para responsividad */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            .image-gallery img {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fase 1: Análisis Fundamental de SIEM en Kali Linux</h1>
+        <p>Fecha de Realización: Agosto 2025</p>
+        <hr>
+
+        <h2>Introducción General de la Fase 1</h2>
+        <p>This phase of my SIEM laboratory project focuses on gaining fundamental, hands-on experience in log analysis, a core competency for any SOC Analyst N1. By working with logs generated from a Kali Linux endpoint and ingested into Splunk, I explored how to interpret raw data, extract critical information, detect common attack patterns (like authentication failures), and monitor suspicious process and command activity. This holistic approach provided a robust understanding of how to translate raw log data into actionable security intelligence.</p>
+
+        <hr>
+
+        <!-- SUB-PROYECTO 1: Exploración y Normalización de Logs de Kali Linux en Splunk -->
+        <h2>1. Exploración y Normalización de Logs de Kali Linux en Splunk</h2>
+        <h3>Introducción</h3>
+        <p>This project delves into the essential SOC analyst skill of exploring and normalizing log data within Splunk. Effective security analysis relies heavily on the ability to understand raw log formats, identify key fields, and make data searchable and actionable. This exercise focused on Kali Linux system and authentication logs, demonstrating how to navigate Splunk's interface, identify important information, and perform basic field extraction and aggregation to prepare data for more complex threat detection use cases.</p>
+
+        <h3>Exploración Inicial de Logs</h3>
+        <p>After successfully ingesting logs from the Kali Linux endpoint into Splunk, the initial step involved a broad exploration to understand the data's nature. I began by searching for all events from the Kali host with various sourcetypes (primarily `linux_auth` and `linux_syslog`). This allowed me to see the raw log entries and identify the different types of information being captured. The goal was to familiarize myself with the log format, the events being generated (e.g., system messages, authentication events), and to confirm the time synchronization was accurate.</p>
+        <div class="image-gallery">
+            <!-- 1 imagen de exploración inicial de logs, como un evento crudo en Splunk -->
+            <img src="../Image/Imagenes Proyectos/Fase 1/Configuración y Hardening de Laboratorio SIEM (Fuerza Bruta Simulada)/Logs_Kali.png" alt="Vista inicial de logs de Kali en Splunk (ej. auth.log)">
+        </div>
+
+        <h3>Identificación y Extracción de Campos Relevantes</h3>
+        <p>A crucial aspect of log normalization is identifying and utilizing automatically extracted fields, or creating new ones if necessary. Splunk automatically parsed many useful fields from the Kali logs (e.g., `host`, `source`, `sourcetype`, `_time`). I specifically focused on fields pertinent to security analysis:</p>
+        <ul>
+            <li>`user`: Essential for identifying who performed an action.</li>
+            <li>`action`: Indicates the type of event (e.g., `authentication failure`, `session opened`).</li>
+            <li>`command`: The command executed (especially for `sudo` logs).</li>
+            <li>`src_ip`: Source IP for network-related events.</li>
+        </ul>
+        <p>Understanding these fields allows for precise filtering, statistical analysis, and correlation across different log sources.</p>
+        <div class="image-gallery">
+            <!-- 1 imagen mostrando los "Interested Fields" en Splunk -->
+            <img src="../Image/Imagenes Proyectos/Fase 1/Exploración y Normalización de Logs de Kali Linux en Splunk/Interested_Fields.png" alt="Campos interesados y extraídos en Splunk">
+        </div>
+
+        <h3>Normalización y Visualización de Datos</h3>
+        <p>To make the log data more actionable, I applied various Splunk Search Processing Language (SPL) commands for normalization and basic visualization:</p>
+        <ul>
+            <li>**<code>| table _time, host, source, sourcetype, _raw</code>**: This command was used to select and display only the most relevant fields in a clear, tabular format, helping to normalize the view across diverse log entries.</li>
+            <li>**<code>| stats count by sourcetype</code>**: This provided a quick overview of the volume of logs coming from different sourcetypes, helping to understand the distribution of data.</li>
+            <li>**<code>| top host</code>**: This command identified which hosts were generating the most log data, useful for confirming data flow and identifying chatty endpoints.</li>
+        </ul>
+        <p>These techniques are fundamental for preparing log data for advanced analytics and for creating effective dashboards for ongoing monitoring in a SOC.</p>
+        <div class="image-gallery">
+            <!-- 2 imágenes de resultados de Splunk: `| table` y `| stats count by sourcetype` o `| top host` -->
+            <img src="../Image/Imagenes Proyectos/Fase 1/Exploración y Normalización de Logs de Kali Linux en Splunk/Table-Resultado.png" alt="Resultados en formato de tabla en Splunk">
+            <img src="../Image/Imagenes Proyectos/Fase 1/Exploración y Normalización de Logs de Kali Linux en Splunk/Stats-Resultado.png" alt="Estadísticas de sourcetypes en Splunk">
+            <img src="../Image/Imagenes Proyectos/Fase 1/Exploración y Normalización de Logs de Kali Linux en Splunk/TopHost-Resultado.png" alt="Top Hosts por conteo de logs en Splunk">
+        </div>
+
+        <h3>Conclusión y Aprendizajes (Exploración y Normalización)</h3>
+        <p>This project significantly enhanced my skills in log exploration and normalization using Splunk. I gained practical experience in navigating raw log data, identifying and utilizing relevant fields, and applying SPL commands to structure and summarize information. This fundamental ability is crucial for any SOC analyst, enabling efficient data investigation, preparing data for threat hunting, and building comprehensive security dashboards. It reinforced the understanding that raw log data, once normalized, becomes a powerful asset for detecting security incidents.</p>
+        <hr>
+
+        <!-- SUB-PROYECTO 2: Análisis y Detección de Fallos de Autenticación -->
+        <h2>2. Análisis y Detección de Fallos de Autenticación</h2>
+        <h3>Introducción</h3>
+        <p>This project demonstrates the critical process of monitoring and analyzing authentication failures within a security environment. As an SOC Analyst N1, identifying unusual or excessive failed login attempts is paramount for detecting potential brute-force attacks, credential stuffing, or unauthorized access attempts. Utilizing Splunk as the SIEM platform, I focused on collecting, searching, and interpreting authentication logs from a Kali Linux endpoint to gain practical experience in this vital security domain.</p>
+
+        <h3>Generación y Recolección de Eventos (Fallos de Autenticación)</h3>
+        <p>To simulate real-world scenarios, I deliberately generated various types of authentication failure events on the Kali Linux endpoint. These included:</p>
+        <ul>
+            <li>**<code>su</code> attempts:** Trying to switch to existing users (e.g., `kali`) with incorrect passwords, and attempting to switch to non-existent users.</li>
+            <li>**<code>sudo</code> attempts:** Executing commands with `sudo` and intentionally providing incorrect passwords to generate failed privilege escalation logs.</li>
+        </ul>
+        <p>These activities were successfully captured by the Splunk Universal Forwarder from Kali's `/var/log/auth.log` (via `rsyslog` integration) and ingested into Splunk. The consistency in log collection was a key success factor for this analysis.</p>
+        <div class="image-gallery">
+            <!-- Capturas: Comandos en Kali generando fallos de autenticación (su, sudo) -->
+            <img src="../Image/Imagenes Proyectos/Fase 1/Auth Failures/kali_su_failed.png" alt="Comando 'su' con contraseña incorrecta en Kali" onerror="this.onerror=null;this.src='https://placehold.co/400x250/34495e/ecf0f1?text=Kali+su+failed';">
+            <img src="../Image/Imagenes Proyectos/Fase 1/Auth Failures/kali_sudo_failed.png" alt="Comando 'sudo' con contraseña incorrecta en Kali" onerror="this.onerror=null;this.src='https://placehold.co/400x250/34495e/ecf0f1?text=Kali+sudo+failed';">
+            <img src="../Image/Imagenes Proyectos/Fase 1/Auth Failures/kali_su_nonexistent.png" alt="Comando 'su' a usuario inexistente en Kali" onerror="this.onerror=null;this.src='https://placehold.co/400x250/34495e/ecf0f1?text=Kali+su+nonexistent';">
+        </div>
+
+        <h3>Búsqueda y Análisis en Splunk (Fallos de Autenticación)</h3>
+        <p>Once logs were flowing into Splunk, I leveraged the Search Processing Language (SPL) to identify and analyze the generated authentication failures. The primary search query targeted relevant sourcetypes and keywords:</p>
+        <pre><code>index=main host=kali (sourcetype=linux_auth OR sourcetype=linux_syslog) ("authentication failure" OR "FAILED SU" OR "incorrect password attempts" OR "sudo:" OR "su")</code></pre>
+        <p>This query allowed me to efficiently filter out irrelevant events and focus on critical security incidents. To further refine the analysis, I utilized SPL commands:</p>
+        <ul>
+            <li>**<code>| table _time, host, user, _raw, sourcetype</code>**: To display key fields for each event, making the raw log data more digestible and facilitating quick review.</li>
+            <li>**<code>| stats count by user, _raw</code>**: To aggregate events and count occurrences of specific raw log entries per user, helping identify patterns such as repeated failed login attempts from a particular account or attempts to enumerate users. This is crucial for spotting brute-force activity.</li>
+        </ul>
+        <div class="image-gallery">
+            <!-- Capturas: Búsquedas en Splunk, resultados de | table y | stats -->
+            <img src="../Image/Imagenes Proyecto/Fase 2/Auth Failures/splunk_auth_search.png" alt="Búsqueda en Splunk de fallos de autenticación" onerror="this.onerror=null;this.src='https://placehold.co/400x250/34495e/ecf0f1?text=Splunk+Auth+Search';">
+            <img src="../Image/Imagenes Proyecto/Fase 2/Auth Failures/splunk_auth_table.png" alt="Resultados de búsqueda con | table en Splunk" onerror="this.onerror=null;this.src='https://placehold.co/400x250/34495e/ecf0f1?text=Splunk+Auth+Table';">
+            <img src="../Image/Imagenes Proyecto/Fase 2/Auth Failures/splunk_auth_stats.png" alt="Resultados de | stats count by user, _raw en Splunk" onerror="this.onerror=null;this.src='https://placehold.co/400x250/34495e/ecf0f1?text=Splunk+Auth+Stats';">
+        </div>
+
+        <h3>Relevancia de Seguridad y Estrategias de Detección (Fallos de Autenticación)</h3>
+        <p>The ability to effectively monitor authentication failures is fundamental for a SOC N1 analyst. These logs serve as primary indicators for:</p>
+        <ul>
+            <li>**Brute-Force Attacks:** A sudden spike in failed login attempts against a single user or multiple users.</li>
+            <li>**User Enumeration:** Repeated attempts to log in with different usernames, indicating an attacker trying to discover valid accounts.</li>
+            <li>**Credential Stuffing:** Using stolen credentials from other breaches to try and access accounts on your system.</li>
+            <li>**Privilege Escalation Attempts:** Failed `sudo` or `su` attempts that might indicate an attacker trying to gain higher access once on the system.</li>
+        </ul>
+        <p>In a real SOC environment, these patterns would trigger alerts, requiring immediate investigation. For instance, an alert could be configured in Splunk for 5 or more failed logins from the same source IP to the same user within a 5-minute window.</p>
+
+        <h3>Conclusión y Aprendizajes (Fallos de Autenticación)</h3>
+        <p>This project provided invaluable hands-on experience in detecting and analyzing authentication failures using Splunk. I gained a deeper understanding of how critical these logs are for early threat detection and how to use SPL effectively to extract actionable intelligence. The exercise reinforced the importance of proactive monitoring in identifying malicious activity like brute-force attacks and unauthorized access attempts, solidifying my capabilities as an aspiring SOC N1 Analyst.</p>
+        <hr>
+
+        <!-- SUB-PROYECTO 3: Monitoreo y Detección de Actividad de Procesos y Comandos Sospechosos -->
+        <h2>3. Monitoreo y Detección de Actividad de Procesos y Comandos Sospechosos</h2>
+        <h3>Introducción</h3>
+        <p>This project explores the fundamental aspects of monitoring user activity and command execution on Linux endpoints, a core responsibility for an SOC Analyst N1. Understanding what commands are executed, by whom, and with what privileges, is crucial for detecting suspicious behavior, policy violations, and potential compromises. Utilizing Splunk, this exercise focused on identifying security-relevant command logs that are typically generated by standard system logging mechanisms, providing practical insights into endpoint security visibility.</p>
+
+        <h3>Generación de Eventos y Comportamiento de Logging (Procesos y Comandos)</h3>
+        <p>I generated various command activities on the Kali Linux endpoint to observe how different actions are logged. It's crucial to understand the default logging behavior of Linux systems (specifically `rsyslog` to `/var/log/auth.log` and `/var/log/syslog`):</p>
+        <ul>
+            <li>**Privileged Command Execution (<code>sudo</code>, <code>su</code>):** These actions, whether successful or failed, are consistently logged in `/var/log/auth.log` as they involve authentication and privilege escalation. I executed commands like `sudo ls /root` (successful and failed password attempts) and `su - user` (successful and failed attempts to switch user).</li>
+            <li>**Normal User Commands (<code>ls</code>, <code>cat</code>, <code>netstat</code>, <code>ps aux</code>):** When executed by a regular user and without privilege escalation, these commands typically **do not generate entries** in `/var/log/auth.log` or `/var/log/syslog`. Errors like "Permission denied" for `ls -la /root` or `cat /etc/shadow` are usually outputted to the user's terminal (stderr) and are not sent to the system logger by default.</li>
+        </ul>
+        <p>This distinction is vital: standard system logs prioritize critical security events (authentication, privilege changes) over every single command executed by non-privileged users. For comprehensive command auditing, specialized tools like `auditd` would be necessary, but were outside the scope of this basic monitoring exercise.</p>
+        <div class="image-gallery">
+            <!-- Capturas: Logs de sudo y su en Kali y en Splunk -->
+            <img src="../Image/Imagenes Proyectos/Fase 1/Monitoreo y Detección de Actividad de Procesos y Comandos Sospechosos/Monitoreo-Logs.png" alt="Logs de autenticación y sudo en Splunk (vista Eventos)">
+            <img src="../Image/Imagenes Proyectos/Fase 1/Monitoreo y Detección de Actividad de Procesos y Comandos Sospechosos/Monitoreos-SudoLogs.png" alt="Logs de sudo y su en Splunk (vista Eventos, más detallado)">
+        </div>
+
+        <h3>Análisis en Splunk de Eventos Relevantes (Procesos y Comandos)</h3>
+        <p>My Splunk analysis focused on the high-value security events that are reliably logged by the system. The primary search query used was:</p>
+        <pre><code>index=main host=kali (sourcetype=linux_auth OR sourcetype=linux_syslog) ("authentication failure" OR "FAILED SU" OR "incorrect password attempts" OR "sudo:" OR "su")</code></pre>
+        <p>This broad query effectively captured all authentication-related activity. To gain deeper insights, I applied SPL commands:</p>
+        <ul>
+            <li>**<code>| table _time, host, user, _raw, sourcetype, action</code>**: This allowed for a quick overview of each relevant event, including the timestamp, source host, user involved, the raw log message, and the specific sourcetype.</li>
+            <li>**<code>| stats count by user, _raw, sourcetype | sort -count</code>**: This command was crucial for identifying patterns. By grouping and counting events based on the user, the raw log message, and the sourcetype, I could quickly see which types of `sudo` or `su` events were most frequent, helping to spot repetitive malicious activity or anomalies.</li>
+        </ul>
+        <div class="image-gallery">
+            <!-- Capturas: Resultados de | table y | stats para esta sección -->
+            <img src="../Image/Imagenes Proyectos/Fase 1/Monitoreo y Detección de Actividad de Procesos y Comandos Sospechosos/Mon-table.png" alt="Resultados de | table para monitoreo de comandos en Splunk">
+            <img src="https://placehold.co/400x250/34495e/ecf0f1?text=Stats+Results+for+Commands" alt="Estadísticas de conteo de comandos en Splunk">
+        </div>
+
+        <h3>Relevancia de Seguridad y Detección de Anomalías (Procesos y Comandos)</h3>
+        <p>Monitoring privileged command execution is vital for security. A SOC N1 analyst would look for:</p>
+        <ul>
+            <li>**Unauthorized Privilege Escalation:** Repeated failed `sudo` or `su` attempts could indicate an attacker trying to gain root access.</li>
+            <li>**Suspicious <code>sudo</code> Usage:** Legitimate users executing `sudo` for unusual commands or outside of normal working hours. For example, if a developer account suddenly runs a system-level command, it warrants investigation.</li>
+            <li>**Unexpected User Activity:** Any `su` or `sudo` activity from accounts that typically do not perform such actions.</li>
+        </ul>
+        <p>By establishing baselines of normal privileged activity, anomalies can be quickly identified. Splunk allows for the creation of alerts based on unusual counts of `sudo` failures, or `su` attempts to sensitive accounts, enhancing the ability to detect and respond to potential threats in real-time.</p>
+
+        <h3>Conclusión y Aprendizajes (Procesos y Comandos)</h3>
+        <p>This project solidified my understanding of what types of command executions are inherently logged by Linux systems and how to leverage Splunk for their analysis. I learned to distinguish between general user activity and security-critical events, focusing on logs related to privilege escalation and authentication. This practical experience is fundamental for any SOC N1 analyst, equipping me with the skills to effectively monitor endpoints, identify suspicious command behavior, and contribute to proactive threat detection within an organization's security posture.</p>
+        
+        <a href="../index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Volver al Portafolio Principal</a>
+    </div>
+</body>
+</html>

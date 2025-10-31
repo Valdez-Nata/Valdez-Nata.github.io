@@ -1,0 +1,814 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Work+Sans:wght@100;300;400;600;800&display=swap');
+
+/* Variables CSS para una paleta de colores limpia y contrastada */
+:root {
+    --primary-color: #00ADB5; /* Verde azulado vibrante para acentos (barras de progreso, etc.) */
+    --primary-color-dark: #00818A; /* Versión más oscura del color primario */
+    --secondary-color: #FF2E63; /* Rojo brillante para acentos */
+    --background-dark: #222831; /* Fondo muy oscuro, casi negro (secciones oscuras) */
+    --background-light: #F0F0F0; /* Fondo claro para secciones de contraste (donde títulos son negros) */
+    --text-light: #EEEEEE; /* Texto blanco/gris muy claro */
+    --text-dark: #1F1F1F; /* Texto oscuro, casi negro */
+    --border-color-dark: #393E46; /* Gris oscuro para bordes y separadores en fondos oscuros */
+    --border-color-light: #CCCCCC; /* Gris claro para bordes en fondos claros */
+    --shadow-dark: rgba(0, 0, 0, 0.5); /* Sombra para profundidad en fondos oscuros */
+    --shadow-light: rgba(0, 0, 0, 0.15); /* Sombra más sutil en fondos claros */
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Work Sans';
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    /* Nos permite un scroll suave */
+    scroll-behavior: smooth;
+}
+
+/* MENÚ DE ENCABEZADO */
+.contenedor-header {
+    background: var(--background-light); /* Fondo blanco/gris claro para el header */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    box-shadow: 0 2px 10px var(--shadow-light); /* Sombra sutil para profundidad */
+}
+.contenedor-header header {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+.contenedor-header header .logo a {
+    font-family: 'Righteous';
+    font-size: 26px;
+    color: var(--text-dark); /* Texto negro para el logo */
+    text-decoration: none;
+}
+.contenedor-header header .logo a span { /* Para el "NATA" en color de acento */
+    color: var(--primary-color);
+}
+.contenedor-header header ul {
+    display: flex;
+    list-style: none;
+}
+.contenedor-header header nav ul li a {
+    text-decoration: none;
+    color: var(--text-dark); /* Texto negro para el menú */
+    margin: 0 15px;
+    font-weight: 600;
+    transition: .5s;
+}
+.contenedor-header header nav ul li a:hover {
+    color: var(--primary-color); /* Hover con color primario */
+}
+.nav-responsive {
+    background-color: var(--primary-color);
+    color: var(--text-dark); /* Icono en negro para contraste */
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+/* SECCIÓN INICIO */
+.inicio {
+    background-color: var(--background-dark); /* Fondo oscuro principal */
+    height: 100vh;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 20px;
+    background-image: url('/Image');
+    background-size: cover; /* Esto asegura que la imagen cubra toda la sección */
+    background-position: center; /* Esto centra la imagen */
+}
+
+.inicio .contenido-banner {
+    max-width: 800px; /* Aumentado el ancho máximo para que ocupe más espacio */
+    margin: auto;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 40px; /* Más padding interno */
+}
+.inicio .contenido-banner .contenedor-img {
+    position: relative;
+    margin: 0 auto 30px auto;
+    width: 250px; /* Tamaño de imagen de perfil más grande */
+    height: 250px; /* Tamaño de imagen de perfil más grande */
+    border-radius: 50%;
+    border: 6px solid var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 0 30px var(--shadow-dark);
+}
+.inicio .contenido-banner .contenedor-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.inicio .contenido-banner h1 {
+    margin-top: 25px; /* Ajuste de margen */
+    font-family: 'Righteous';
+    font-size: 52px; /* Título principal más grande */
+    color: var(--text-light); /* Título principal en blanco */
+    line-height: 1.2;
+}
+.inicio .contenido-banner h2 {
+    font-size: 20px; /* Subtítulo más grande */
+    font-weight: normal;
+    color: var(--text-light); /* Subtítulo en blanco */
+    margin-top: 15px; /* Espacio entre h1 y h2 */
+}
+.inicio .contenido-banner .redes {
+    margin-top: 40px; /* Más espacio para las redes */
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Más espacio entre íconos */
+}
+.inicio .contenido-banner .redes a {
+    color: var(--text-light); /* Íconos de redes sociales en blanco */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px; /* Íconos más grandes */
+    height: 60px; /* Íconos más grandes */
+    border-radius: 50%;
+    border: 2px solid var(--border-color-dark); /* Borde más visible */
+    transition: .3s;
+    font-size: 26px; /* Tamaño del ícono */
+}
+.inicio .contenido-banner .redes a:hover {
+    background-color: var(--primary-color-dark);
+    color: var(--text-light);
+    transform: translateY(-5px);
+}
+
+
+/* SECCIÓN SOBRE MI */
+.sobremi {
+    background-color: var(--background-light); /* Fondo claro para contraste */
+    padding: 100px 0;
+    color: var(--text-dark); /* Texto oscuro */
+}
+.sobremi .contenido-seccion {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px;
+}
+.sobremi h2 {
+    font-family: 'Righteous';
+    font-size: 42px;
+    text-align: center;
+    padding: 20px 0;
+    color: var(--text-dark); /* Título en negro */
+}
+.sobremi .contenido-seccion p {
+    font-size: 18px;
+    line-height: 25px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.sobremi .contenido-seccion p span {
+    color: var(--text-dark); /* Span en negro */
+    font-weight: bold;
+}
+.sobremi .fila {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.sobremi .fila .col {
+    width: 49%;
+    text-align: center;
+}
+.sobremi .fila .col h3 {
+    font-size: 22px;
+    font-family: 'Righteous';
+    margin-bottom: 25px;
+    color: var(--text-dark); /* Subtítulos en negro */
+}
+.sobremi .fila .col ul {
+    list-style: none;
+    text-align: left;
+    margin: auto;
+    width: fit-content;
+}
+.sobremi .fila .col ul li {
+    margin-bottom: 10px;
+}
+.sobremi .fila .col ul li strong {
+    color: var(--text-dark); /* Detalles en negro */
+    margin-right: 10px;
+}
+.sobremi .fila .col ul li span {
+    background-color: var(--secondary-color);
+    padding: 3px 8px;
+    border-radius: 5px;
+    color: var(--text-light);
+    font-weight: 600;
+}
+.sobremi .fila .col .contenedor-intereses {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+.sobremi .fila .col .contenedor-intereses .interes {
+    width: 120px;
+    height: 100px;
+    background-color: var(--background-dark);
+    border-radius: 10px;
+    border: 1px solid var(--border-color-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    transition: .3s;
+    box-shadow: 0 4px 10px var(--shadow-dark);
+}
+.sobremi .fila .col .contenedor-intereses .interes:hover {
+    background-color: var(--primary-color-dark);
+    transform: translateY(-5px);
+}
+.sobremi .fila .col .contenedor-intereses .interes i {
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: var(--text-light); /* Íconos de interés en blanco */
+}
+.sobremi .fila .col .contenedor-intereses .interes span {
+    font-size: 14px;
+    color: var(--text-light);
+    text-align: center;
+}
+.sobremi button {
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    width: fit-content;
+    display: block;
+    margin: 60px auto 0;
+    padding: 10px 22px;
+    font-size: 16px;
+    color: var(--text-dark); /* Texto negro en botón CV */
+    position: relative;
+    z-index: 10;
+    border-radius: 30px;
+    transition: all .3s ease;
+    overflow: hidden;
+}
+.sobremi button .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--primary-color);
+    z-index: -1;
+    transition: 1s;
+}
+.sobremi button:hover .overlay {
+    width: 100%;
+}
+.sobremi button i {
+    margin-left: 10px;
+    color: var(--text-dark); /* Icono en negro por defecto */
+    transition: color .3s ease;
+}
+.sobremi button:hover i {
+    color: var(--text-light); /* Icono blanco al hover */
+}
+
+
+/* SECCIÓN SKILLS */
+.skills {
+    background-color: var(--background-dark); /* Fondo oscuro */
+    padding: 100px 0;
+    text-align: center;
+    color: var(--text-light); /* Texto blanco */
+}
+.skills .contenido-seccion {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px;
+}
+.skills h2 {
+    font-family: 'Righteous';
+    font-size: 42px;
+    text-align: center;
+    padding: 20px 0;
+    color: var(--primary-color); /* Título en color primario */
+}
+.skills .fila {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin-top: 30px;
+}
+.skills .fila .col {
+    width: 48%;
+}
+.skills .fila .col h3 {
+    font-size: 28px;
+    font-family: 'Righteous';
+    margin-bottom: 30px;
+    color: var(--text-light); /* Subtítulos de skills en blanco */
+    text-align: left;
+}
+.skills .fila .col .skill {
+    margin-bottom: 30px;
+    text-align: left;
+}
+.skills .fila .col .skill span {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-light);
+    display: block;
+    margin-bottom: 10px;
+}
+.skills .fila .col .barra-skill {
+    height: 10px;
+    width: 100%;
+    background-color: var(--background-medium);
+    border-radius: 5px;
+    position: relative;
+}
+.skills .fila .col .barra-skill .progreso {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    height: 100%;
+    width: 0;
+    border-radius: 5px;
+}
+.skills .fila .col .barra-skill .progreso span {
+    position: absolute;
+    right: -15px;
+    top: -30px;
+    color: var(--text-light);
+    font-size: 14px;
+    background-color: var(--background-dark);
+    padding: 2px 5px;
+    border-radius: 3px;
+    box-shadow: 0 0 5px var(--shadow-dark);
+    min-width: 35px;
+    text-align: center;
+}
+
+
+/* SECCIÓN EXPERIENCIA */
+.curriculum {
+    background-color: var(--background-light); /* Fondo claro para contraste */
+    padding: 100px 0;
+    color: var(--text-dark); /* Texto oscuro */
+}
+.curriculum .contenido-seccion {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px;
+}
+.curriculum h2 {
+    font-family: 'Righteous';
+    font-size: 42px;
+    text-align: center;
+    padding: 20px 0;
+    color: var(--text-dark); /* Título en negro */
+}
+.curriculum .fila {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+}
+.curriculum .fila .col {
+    width: 49%;
+    padding: 0 20px;
+}
+.curriculum .fila .izquierda {
+    border-right: 2px solid var(--border-color-light); /* Borde separador claro */
+}
+.curriculum .fila .derecha {
+    border-left: 2px solid var(--border-color-light); /* Borde separador claro */
+}
+.curriculum .fila .col h3 {
+    font-size: 22px;
+    font-family: 'Righteous';
+    margin-bottom: 25px;
+    text-align: center;
+    color: var(--text-dark); /* Subtítulos en negro */
+}
+.curriculum .fila .item {
+    padding: 25px;
+    margin-bottom: 30px;
+    background-color: var(--background-light);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px var(--shadow-light);
+    position: relative;
+    border: 1px solid var(--border-color-light);
+}
+.curriculum .fila .item h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--text-dark); /* Títulos de item en negro */
+}
+.curriculum .fila .item .casa {
+    color: var(--text-dark); /* Texto en negro */
+    font-size: 16px;
+    font-weight: bold;
+}
+.curriculum .fila .item .fecha {
+    display: block;
+    color: var(--secondary-color);
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.curriculum .fila .item p {
+    line-height: 24px;
+    font-size: 15px;
+    text-align: justify;
+}
+.curriculum .fila .item .conectori, .curriculum .fila .item .conectord {
+    height: 2px;
+    background-color: var(--border-color-light); /* Conectores claros */
+    width: 47px;
+    position: absolute;
+    right: -47px;
+    top: 50%;
+    z-index: 5;
+}
+.curriculum .fila .item .conectord {
+    left: -47px;
+}
+.curriculum .fila .item .circuloi, .curriculum .fila .item .circulod {
+    display: block;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: var(--border-color-light); /* Círculos claros */
+    float: right;
+    margin-top: -4px;
+}
+.curriculum .fila .item .circulod {
+    float: left;
+}
+
+/* SECCIÓN PORTFOLIO */
+.portfolio {
+    background-color: var(--background-dark); /* Fondo oscuro */
+    padding: 100px 0;
+    color: var(--text-light);
+    text-align: center;
+}
+.portfolio .contenido-seccion {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px;
+}
+.portfolio h2 {
+    font-family: 'Righteous';
+    font-size: 42px;
+    text-align: center;
+    padding: 20px 0;
+    color: var(--primary-color); /* Título en color primario */
+}
+.portfolio .galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+.portfolio .galeria .proyecto {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px var(--shadow-dark);
+    border: 1px solid var(--border-color-dark);
+    transition: transform 0.3s ease;
+}
+.portfolio .galeria .proyecto img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+.portfolio .galeria .proyecto .overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,.8), var(--primary-color-dark));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 1s;
+    text-align: center;
+    padding: 20px;
+}
+.portfolio .galeria .proyecto .overlay h3 {
+    color: var(--text-light);
+    margin-bottom: 10px;
+    font-family: 'Righteous';
+}
+.portfolio .galeria .proyecto .overlay p {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+.portfolio .galeria .proyecto .overlay .project-link {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    padding: 8px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: .3s;
+}
+.portfolio .galeria .proyecto .overlay .project-link:hover {
+    background-color: var(--primary-color);
+}
+.portfolio .galeria .proyecto:hover .overlay {
+    opacity: 1;
+}
+.portfolio .galeria .proyecto:hover {
+    transform: scale(1.05);
+}
+
+/* SECCIÓN CONTACTO */
+.contacto {
+    background-color: var(--background-light); /* Fondo claro */
+    padding: 100px 0;
+    color: var(--text-dark);
+    text-align: center;
+}
+.contacto .contenido-seccion {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px;
+}
+.contacto h2 {
+    font-family: 'Righteous';
+    font-size: 42px;
+    text-align: center;
+    padding: 20px 0;
+    color: var(--text-dark); /* Título en negro */
+}
+.contacto .fila {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+}
+.contacto .fila .col {
+    width: 48%;
+}
+.contacto .fila .col input, .contacto .fila .col textarea {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 5px;
+    outline: none;
+}
+.contacto .fila .col input::placeholder, .contacto .fila .col textarea::placeholder {
+    color: var(--text-light);
+    opacity: 0.7;
+}
+.contacto .fila .col textarea {
+    resize: none;
+    height: 150px;
+}
+.contacto .fila .col button {
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    width: fit-content;
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 22px;
+    font-size: 16px;
+    color: var(--text-dark); /* Texto negro en botón */
+    position: relative;
+    z-index: 10;
+    border-radius: 30px;
+    transition: all .3s ease;
+    overflow: hidden;
+}
+.contacto .fila .col button .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--primary-color);
+    z-index: -1;
+    transition: 1s;
+}
+.contacto .fila .col button:hover .overlay {
+    width: 100%;
+}
+.contacto .fila .col button i {
+    margin-left: 10px;
+    color: var(--text-dark); /* Icono en negro por defecto */
+    transition: color .3s ease;
+}
+.contacto .fila .col button:hover i {
+    color: var(--text-light); /* Icono blanco al hover */
+}
+.contacto .fila .col img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-light);
+    border: 1px solid var(--border-color-light);
+}
+.contacto .fila .col .info {
+    text-align: left;
+    margin-top: 20px;
+}
+.contacto .fila .col .info ul {
+    list-style: none;
+    padding: 0;
+}
+.contacto .fila .col .info ul li {
+    margin-bottom: 10px;
+    color: var(--text-dark); /* Texto oscuro */
+    font-size: 17px;
+}
+.contacto .fila .col .info ul li i {
+    color: var(--text-dark); /* Íconos en negro */
+    margin-right: 10px;
+}
+
+/* FOOTER */
+footer {
+    background-color: var(--background-light); /* Fondo claro */
+    color: var(--text-dark);
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 -2px 10px var(--shadow-light);
+}
+footer .arriba {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: var(--text-dark); /* Icono negro */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -25px;
+    border-radius: 50%;
+    line-height: 50px;
+    font-size: 20px;
+    text-decoration: none;
+    transition: .3s;
+}
+footer .arriba:hover {
+    background-color: var(--primary-color-dark);
+}
+footer .redes a {
+    color: var(--text-dark); /* Íconos de redes sociales en footer en negro */
+    display: inline-block;
+    text-decoration: none;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color-light); /* Borde claro */
+    margin: 0 8px;
+    transition: .3s;
+    font-size: 18px;
+    margin-top: 15px;
+}
+footer .redes a:hover {
+    background-color: var(--primary-color-dark);
+    color: var(--text-light);
+}
+
+/* SECCIÓN RESPONSIVE */
+@media screen and (max-width: 990px) {
+    .nav-responsive {
+        display: block;
+    }
+    .contenedor-header header nav {
+        position: absolute;
+        top: 100%;
+        left: -100%;
+        background-color: var(--background-light);
+        width: 100%;
+        height: 100vh;
+        padding: 20px 0;
+        text-align: center;
+        transition: .5s;
+        box-shadow: 0 5px 10px var(--shadow-light);
+    }
+    .contenedor-header header nav.responsive {
+        left: 0;
+    }
+    .contenedor-header header nav ul {
+        display: block;
+        margin: auto;
+    }
+    .contenedor-header header nav ul li {
+        margin: 25px 0;
+    }
+    .contenedor-header header nav ul li a {
+        color: var(--text-dark); /* Texto negro en menú responsive */
+        font-size: 20px;
+    }
+
+    .sobremi .fila {
+        display: block;
+    }
+    .sobremi .fila .col {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .skills .fila {
+        display: block;
+    }
+    .skills .fila .col {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .curriculum .fila {
+        display: block;
+    }
+    .curriculum .fila .col {
+        width: 100%;
+    }
+    .curriculum .fila .izquierda {
+        border-right: none;
+        border-bottom: 2px solid var(--border-color-light);
+        margin-bottom: 60px;
+    }
+    .curriculum .fila .derecha {
+        border-left: none;
+    }
+    .curriculum .fila .item .conectori, .curriculum .fila .item .conectord {
+        right: 50%;
+        bottom: -20px;
+        transform: translateX(50%) rotate(90deg);
+    }
+    .contacto .fila {
+        display: block;
+    }
+    .contacto .fila .col {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .inicio .contenido-banner {
+        max-width: 90%;
+        padding: 20px;
+    }
+    .inicio .contenido-banner h1 {
+        font-size: 38px;
+    }
+    .inicio .contenido-banner h2 {
+        font-size: 16px;
+    }
+    .inicio .contenido-banner .contenedor-img {
+        width: 180px;
+        height: 180px;
+        border-width: 4px;
+    }
+    .inicio .contenido-banner .redes a {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .inicio .contenido-banner h1 {
+        font-size: 30px;
+    }
+    .inicio .contenido-banner h2 {
+        font-size: 14px;
+    }
+}
