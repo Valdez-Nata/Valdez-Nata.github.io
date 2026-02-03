@@ -98,11 +98,21 @@
         <p>Fecha de Realización: Agosto 2025</p>
         <hr style="border-color: var(--border-color); margin: 20px 0;">
 
-        <h2>Introduction</h2>
-        <p>This project outlines the systematic process of setting up a functional Security Information and Event Management (SIEM) laboratory. The primary objective was to establish a controlled environment for practicing cybersecurity skills, specifically log collection, monitoring, and analysis using Splunk Enterprise and Kali Linux. This hands-on experience is crucial for understanding the foundational elements of a SOC analyst role.</p>
+        <h2>Introducción</h2>
+        <p>Este proyecto describe el proceso sistemático de creación de un laboratorio funcional de Security Information and Event Management (SIEM). 
+            El objetivo principal fue establecer un entorno controlado para practicar habilidades de ciberseguridad, específicamente la recolección, 
+            monitoreo y análisis de logs utilizando Splunk Enterprise y Kali Linux. 
+            Esta experiencia práctica es clave para comprender los fundamentos del rol de un analista SOC.</p>
 
-        <h2>Challenge 1: Connectivity and Initial Configuration</h2>
-        <p>The initial phase presented challenges in ensuring seamless network connectivity and correct configuration for log forwarding. Logs from the Kali endpoint were not appearing in Splunk as expected. Through systematic troubleshooting, I first verified basic network communication between the Kali Linux VM (192.168.56.10) and the Ubuntu Server VM (192.168.56.100), confirming that network rules and firewall settings on Ubuntu (UFW allowing port 9997) were correctly configured. The issue was initially traced to discrepancies in hostname recognition within Splunk and then to ensuring the Splunk Universal Forwarder's `outputs.conf` was properly directing data. This phase underscored the importance of meticulous network setup and configuration file validation in a SIEM environment.</p>
+        <h2>Desafío 1: Conectividad y configuración inicial</h2>
+        <p>La fase inicial presentó desafíos relacionados con la conectividad de red y la correcta configuración del envío de logs. 
+            Los registros generados en el endpoint Kali no aparecían en Splunk como se esperaba. 
+            A través de un proceso de troubleshooting sistemático, primero verifiqué la comunicación básica de red entre la VM de Kali Linux 
+            (192.168.56.10) y la VM de Ubuntu Server (192.168.56.100), confirmando que las reglas de red y la configuración del firewall en Ubuntu 
+            (UFW permitiendo el puerto 9997) estuvieran correctamente definidas.
+            El problema se identificó inicialmente en discrepancias relacionadas con el reconocimiento del hostname dentro de Splunk y, posteriormente, 
+            en la correcta configuración del archivo 'outputs.conf' del Splunk Universal Forwarder para dirigir los datos al indexer.
+            Esta etapa resaltó la importancia de una configuración de red precisa y de la validación detallada de archivos de configuración en entornos SIEM.</p>
         <div class="image-gallery">
             <!-- Capturas de pantalla para Conectividad y Configuración Inicial - Imágenes que ya tienes -->
             <img src="../Image/Imagenes Proyectos/Fase 0/Configuración y Operación de Laboratorio SIEM/IP.png" alt="Configuración de IP en Ubuntu Server (ip a show)">
@@ -114,8 +124,19 @@
             <img src="../Image/Imagenes Proyectos/Fase 0/Configuración y Operación de Laboratorio SIEM/Logs Splunk.png" alt="Vista inicial de Logs de Kali en Splunk (index=main sourcetype=syslog)">
         </div>
 
-        <h2>Challenge 2: Authentication Log Ingestion and Journald Issues</h2>
-        <p>A significant hurdle arose when specific authentication logs, crucial for security monitoring, were not being ingested into Splunk. Kali Linux, by default, manages logs via `systemd-journald`, rather than the traditional `rsyslog`. Despite configuring the Universal Forwarder with `[journald]` inputs in `inputs.conf` and ensuring the `splunkfwd` user was part of necessary groups (`systemd-journal`, `adm`), a `splunk btool` inspection revealed that these `journald` configurations were not being loaded by the forwarder. The definitive solution involved installing and enabling `rsyslog` on Kali. This allowed authentication events to be written to standard files like `/var/log/auth.log`, which the Universal Forwarder could reliably monitor. This process highlighted the complexities of log management in different Linux distributions and the need for adaptable collection strategies.</p>
+        <h2>Desafío 2: Ingesta de logs de autenticación y problemas con Journald</h2>
+        <p>
+        Un obstáculo significativo surgió cuando ciertos logs de autenticación, fundamentales para el monitoreo de seguridad, 
+        no estaban siendo ingeridos por Splunk. 
+        Kali Linux, por defecto, gestiona los logs mediante 'systemd-journald' en lugar del tradicional 'rsyslog'. 
+        A pesar de configurar el Universal Forwarder con entradas '[journald]' en 'inputs.conf' y de asegurar que el usuario 
+        'splunkfwd' formara parte de los grupos necesarios 'systemd-journal', 'adm', 
+        una revisión con 'splunk btool' reveló que estas configuraciones no estaban siendo cargadas correctamente por el forwarder.
+        La solución definitiva consistió en instalar y habilitar 'rsyslog' en Kali, lo que permitió que los eventos de autenticación 
+        se escribieran en archivos estándar como '/var/log/auth.log', los cuales el Universal Forwarder pudo monitorear de forma confiable.
+        Este proceso evidenció la complejidad de la gestión de logs entre distintas distribuciones Linux y la necesidad de aplicar estrategias 
+        de recolección adaptables.
+        </p>
         <div class="image-gallery">
             <!-- Capturas de pantalla para Authentication Log Ingestion y Journald Issues -->
             <!-- Aquí irían las capturas del problema con journald y la solución -->
@@ -126,8 +147,21 @@
             <img src="https://placehold.co/400x250/34495e/ecf0f0?text=inputs.conf+final+content" alt="Contenido final de inputs.conf monitoreando auth.log y syslog (solución)">
         </div>
 
-        <h2>Challenge 3: Time Synchronization and Outdated Logs</h2>
-        <p>The final and most persistent challenge was the timestamp discrepancy in Splunk, where recent Kali logs appeared with outdated dates (e.g., from the previous day). This was diagnosed as a lack of internet connectivity on the Kali VM, preventing its Network Time Protocol (NTP) service (`systemd-timesyncd`) from synchronizing the system clock. Although a NAT network adapter (`eth2`) was configured in VirtualBox to provide internet access, initial attempts to manually set the default gateway failed. The core problem was Kali not automatically acquiring its network configuration (including the default gateway) via DHCP for the NAT interface. The resolution involved explicitly configuring `eth2` for DHCP in `/etc/network/interfaces` and restarting the network services. Once internet access was established, NTP synchronization occurred, and all subsequent logs were correctly timestamped in Splunk, enabling accurate real-time analysis.</p>
+        <h2>Desafío 3: Sincronización horaria y logs desactualizados</h2>
+        <p>
+        El último y más persistente desafío estuvo relacionado con discrepancias en las marcas de tiempo dentro de Splunk, 
+        donde los logs recientes de Kali aparecían con fechas desactualizadas (por ejemplo, del día anterior).
+        El diagnóstico reveló que la VM de Kali no contaba con conectividad a internet, lo que impedía que el servicio de Network Time Protocol (NTP), 
+        'systemd-timesyncd', sincronizara correctamente el reloj del sistema.
+        Si bien se había configurado un adaptador de red NAT ('eth2') en VirtualBox para proporcionar acceso a internet, 
+        los intentos iniciales de configurar manualmente la puerta de enlace por defecto no tuvieron éxito.
+        El problema central era que Kali no estaba obteniendo automáticamente su configuración de red (incluida la gateway) vía DHCP 
+        en la interfaz NAT.
+        La resolución consistió en configurar explícitamente la interfaz 'eth2' para utilizar DHCP en 
+        '/etc/network/interfaces' y reiniciar los servicios de red.
+        Una vez restablecida la conectividad a internet, la sincronización NTP se completó correctamente y los logs comenzaron a mostrarse 
+        con marcas de tiempo precisas en Splunk, permitiendo un análisis en tiempo real confiable.
+        </p>
         <div class="image-gallery">
             <!-- Capturas de pantalla para Time Synchronization y Outdated Logs -->
             <!-- Aquí irían las capturas del problema de tiempo y la solución -->
@@ -139,8 +173,16 @@
             <img src="../Image/Imagenes Proyectos/Fase 0/Configuración y Operación de Laboratorio SIEM/Logs Splunk.png" alt="Logs de Kali en Splunk con la hora correcta (solución)">
         </div>
 
-        <h2>Conclusion and Learnings</h2>
-        <p>This comprehensive troubleshooting process was invaluable. It not only solidified my understanding of SIEM architecture and log collection mechanisms but also honed critical problem-solving skills, persistence, and attention to detail. Overcoming network, permission, and time synchronization challenges demonstrates a practical capability essential for an SOC N1 analyst. This hands-on experience forms a robust foundation for future security analysis tasks, proving my ability to set up and maintain critical security infrastructure, diagnose complex issues, and ensure data integrity for real-time threat detection.</p>
+        <h2>Conclusión y aprendizajes</h2>
+        <p>
+        Este proceso integral de troubleshooting resultó altamente valioso. 
+        No solo consolidó mi comprensión de la arquitectura SIEM y de los mecanismos de recolección de logs, 
+        sino que también fortaleció habilidades críticas como la resolución de problemas, la persistencia y la atención al detalle.
+        Superar desafíos relacionados con red, permisos y sincronización horaria demuestra una capacidad práctica esencial para un analista SOC N1.
+        Esta experiencia práctica constituye una base sólida para futuras tareas de análisis de seguridad, evidenciando mi capacidad para 
+        implementar y mantener infraestructura crítica de seguridad, diagnosticar problemas complejos y garantizar la integridad de los datos 
+        para una detección de amenazas en tiempo real.
+        </p>
         
         <a href="../index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Volver al Portafolio Principal</a>
     </div>
